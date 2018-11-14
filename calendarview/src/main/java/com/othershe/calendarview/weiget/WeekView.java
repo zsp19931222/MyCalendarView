@@ -15,8 +15,8 @@ import com.othershe.calendarview.utils.CalendarUtil;
 public class WeekView extends View {
 
     private String[] weekArray = {"一", "二", "三", "四", "五", "六","日" };
-    private int weekSize = 12;//文字尺寸
-    private int weekColor = Color.BLACK;//文字颜色
+    private int weekSize = 13;//文字尺寸
+    private int weekColor = Color.WHITE;//文字颜色
 
     private Paint mPaint;
     private Context context;
@@ -34,7 +34,7 @@ public class WeekView extends View {
         this.context = context;
         initAttrs(attrs);
         initPaint();
-        setBackgroundColor(Color.WHITE);
+        setBackgroundColor(Color.parseColor("#55B2F5"));
     }
 
     private void initAttrs(AttributeSet attrs) {

@@ -7,6 +7,7 @@
 
     <TextView
         android:id="@+id/solar_day"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -14,5 +15,10 @@
         android:id="@+id/lunar_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <com.othershe.calendarview.weiget.CircleView
+        android:id="@+id/circleView"
+        android:layout_width="15dp"
+        android:visibility="gone"
+        android:layout_height="10dp" />
 
 </LinearLayout>

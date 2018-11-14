@@ -12,11 +12,11 @@
         android:right="1dp"
         android:top="1dp">
         <shape>
-            <solid android:color="#55B2F5" />
+            <solid android:color="#ffffff" />
             <corners android:radius="4px" />
 
             <stroke
-                android:width="2px"
+                android:width="1px"
                 android:color="#ffffff" />
         </shape>
     </item>

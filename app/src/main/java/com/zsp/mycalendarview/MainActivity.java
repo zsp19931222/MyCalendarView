@@ -1,9 +1,12 @@
 package com.zsp.mycalendarview;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,12 +24,15 @@ import com.othershe.calendarview.listener.OnSingleChooseListener;
 import com.othershe.calendarview.utils.CalendarUtil;
 import com.othershe.calendarview.weiget.CalendarView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
+
     private CalendarView calendarView;
-    private TextView chooseDate;
 
     private int[] cDate = CalendarUtil.getCurrentDate();
 
@@ -37,34 +43,35 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout weekRec4;
     private RelativeLayout weekRec5;
     private RelativeLayout weekRec6;
-    private ImageView weekImage1;
-    private ImageView weekImage2;
-    private ImageView weekImage3;
-    private ImageView weekImage4;
-    private ImageView weekImage5;
-    private ImageView weekImage6;
+    private TextView weekImage1;
+    private TextView weekImage2;
+    private TextView weekImage3;
+    private TextView weekImage4;
+    private TextView weekImage5;
+    private TextView weekImage6;
+    private RelativeLayout cut_line_rel_5;
+    private RelativeLayout cut_line_rel_6;
+    private TextView title;
+
+    private CalendarAdapter adapter;
+    private List<CalendarBean> calendarBeans=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        final TextView title = findViewById(R.id.title);
-        weekRec1 = findViewById(R.id.week_rel1);
-        weekRec2 = findViewById(R.id.week_rel2);
-        weekRec3 = findViewById(R.id.week_rel3);
-        weekRec4 = findViewById(R.id.week_rel4);
-        weekRec5 = findViewById(R.id.week_rel5);
-        weekRec6 = findViewById(R.id.week_rel6);
-        weekImage1 = findViewById(R.id.week_image1);
-        weekImage2 = findViewById(R.id.week_image2);
-        weekImage3 = findViewById(R.id.week_image3);
-        weekImage4 = findViewById(R.id.week_image4);
-        weekImage5 = findViewById(R.id.week_image5);
-        weekImage6 = findViewById(R.id.week_image6);
-        //当前选中的日期
-        chooseDate = findViewById(R.id.choose_date);
+        setContentView(R.layout.main);
+        recyclerView = findViewById(R.id.rec);
+        View view = LayoutInflater.from(this).inflate(R.layout.activity_main, null);
+        findId(view);
+        for (int i = 0; i <15 ; i++) {
+            calendarBeans.add(new CalendarBean("事件","时间","说明",i));
+        }
 
-        calendarView = findViewById(R.id.calendar);
+        adapter=new CalendarAdapter(R.layout.item_calendar,calendarBeans);
+        adapter.addHeaderView(view);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         HashMap<String, String> map = new HashMap<>();
         map.put("2017.10.30", "qaz");
         map.put("2017.10.1", "wsx");
@@ -90,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
 //        }).init();
 
         title.setText(cDate[0] + "年" + cDate[1] + "月");
-        chooseDate.setText("当前选中的日期：" + cDate[0] + "年" + cDate[1] + "月" + cDate[2] + "日");
 
         calendarView.setOnPagerChangeListener(new OnPagerChangeListener() {
             @Override
@@ -106,14 +112,43 @@ public class MainActivity extends AppCompatActivity {
             public void onSingleChoose(View view, DateBean date) {
                 title.setText(date.getSolar()[0] + "年" + date.getSolar()[1] + "月");
                 if (date.getType() == 1) {
-                    chooseDate.setText("当前选中的日期：" + date.getSolar()[0] + "年" + date.getSolar()[1] + "月" + date.getSolar()[2] + "日");
                 }
+                calendarBeans.clear();
+                if (date.getSolar()[0]==2018&&date.getSolar()[1]==11&&date.getSolar()[2]==15){
+                    for (int i = 0; i <3 ; i++) {
+                        calendarBeans.add(new CalendarBean("事件","时间","说明",i));
+                    }
+                }else if (date.getSolar()[0]==2018&&date.getSolar()[1]==11&&date.getSolar()[2]==16){
+                    for (int i = 0; i <16 ; i++) {
+                        calendarBeans.add(new CalendarBean("事件","时间","说明",i));
+                    }
+                }
+                adapter.notifyDataSetChanged();
                 Toast.makeText(MainActivity.this, "当前选中的日期：" + date.getSolar()[0] + "年" + date.getSolar()[1] + "月" + date.getSolar()[2] + "日", Toast.LENGTH_SHORT).show();
             }
         });
-        setWeekLin(cDate[0],cDate[1]);
+        setWeekLin(cDate[0], cDate[1]);
     }
 
+    private void findId(View view) {
+        title = view.findViewById(R.id.title);
+        weekRec1 = view.findViewById(R.id.week_rel1);
+        weekRec2 = view.findViewById(R.id.week_rel2);
+        weekRec3 = view.findViewById(R.id.week_rel3);
+        weekRec4 = view.findViewById(R.id.week_rel4);
+        weekRec5 = view.findViewById(R.id.week_rel5);
+        weekRec6 = view.findViewById(R.id.week_rel6);
+        weekImage1 = view.findViewById(R.id.week_image1);
+        weekImage2 = view.findViewById(R.id.week_image2);
+        weekImage3 = view.findViewById(R.id.week_image3);
+        weekImage4 = view.findViewById(R.id.week_image4);
+        weekImage5 = view.findViewById(R.id.week_image5);
+        weekImage6 = view.findViewById(R.id.week_image6);
+        cut_line_rel_5 = view.findViewById(R.id.cut_line_rel_5);
+        cut_line_rel_6 = view.findViewById(R.id.cut_line_rel_6);
+
+        calendarView = view.findViewById(R.id.calendar);
+    }
 
     public void someday(View v) {
         View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.input_layout, null);
@@ -138,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
                         if (!result) {
                             Toast.makeText(MainActivity.this, "日期越界！", Toast.LENGTH_SHORT).show();
                         } else {
-                            chooseDate.setText("当前选中的日期：" + year.getText() + "年" + month.getText() + "月" + day.getText() + "日");
                         }
                         dialog.dismiss();
                     }
@@ -148,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void today(View view) {
         calendarView.today();
-        chooseDate.setText("当前选中的日期：" + cDate[0] + "年" + cDate[1] + "月" + cDate[2] + "日");
     }
 
     public void lastMonth(View view) {
@@ -185,23 +218,37 @@ public class MainActivity extends AppCompatActivity {
         int num = CalendarUtil.getMonthRows(year, month);
         if (num == 5) {
             weekRec6.setVisibility(View.GONE);
+            cut_line_rel_6.setVisibility(View.GONE);
         } else {
             weekRec6.setVisibility(View.VISIBLE);
+            cut_line_rel_6.setVisibility(View.VISIBLE);
         }
-        if (year>=2018&&month==12){
-            weekImage1.setBackgroundResource(R.mipmap.bg1);
-            weekImage2.setBackgroundResource(R.mipmap.bg1);
-            weekImage3.setBackgroundResource(R.mipmap.bg1);
-            weekImage4.setBackgroundResource(R.mipmap.bg1);
-            weekImage5.setBackgroundResource(R.mipmap.bg1);
-            weekImage6.setBackgroundResource(R.mipmap.bg1);
-        }else {
-            weekImage1.setBackgroundResource(R.mipmap.bg);
-            weekImage2.setBackgroundResource(R.mipmap.bg);
-            weekImage3.setBackgroundResource(R.mipmap.bg);
-            weekImage4.setBackgroundResource(R.mipmap.bg);
-            weekImage5.setBackgroundResource(R.mipmap.bg);
-            weekImage6.setBackgroundResource(R.mipmap.bg);
+        if (year >= 2018 && month == 12) {
+            setText(weekImage1, true);
+            setText(weekImage2, true);
+            setText(weekImage3, true);
+            setText(weekImage4, true);
+            setText(weekImage5, true);
+            setText(weekImage6, true);
+        } else {
+            setText(weekImage1, false);
+            setText(weekImage2, false);
+            setText(weekImage3, false);
+            setText(weekImage4, false);
+            setText(weekImage5, false);
+            setText(weekImage6, false);
+        }
+    }
+
+    private void setText(TextView textView, boolean isHoliday) {
+        if (isHoliday) {
+            textView.setText("暑假");
+            textView.setTextColor(Color.parseColor("#FF1F1F"));
+            textView.setBackgroundResource(R.mipmap.holiday_bg);
+        } else {
+            textView.setText("1");
+            textView.setTextColor(Color.parseColor("#55B2F5"));
+            textView.setBackgroundResource(R.mipmap.week_bg);
         }
     }
 }

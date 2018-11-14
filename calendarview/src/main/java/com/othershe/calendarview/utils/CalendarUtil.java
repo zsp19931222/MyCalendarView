@@ -105,7 +105,7 @@ public class CalendarUtil {
         if (rows == 4) {
             rows = 5;
         }
-        return rows;
+        return 6;
     }
 
     /**

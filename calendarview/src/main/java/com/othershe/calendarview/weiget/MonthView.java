@@ -95,16 +95,19 @@ public class MonthView extends ViewGroup {
             View view;
             TextView solarDay;//阳历TextView
             TextView lunarDay;//阴历TextView(节假日、节气同样使用阴历TextView来显示)
+            CircleView circleView;
 
             if (item_layout != 0 && calendarViewAdapter != null) {
                 view = LayoutInflater.from(mContext).inflate(item_layout, null);
-                TextView[] views = calendarViewAdapter.convertView(view, date);
-                solarDay = views[0];
-                lunarDay = views[1];
+                View[] views = calendarViewAdapter.convertView(view, date);
+                solarDay = (TextView) views[0];
+                lunarDay = (TextView) views[1];
+                circleView= (CircleView) views[2];
             } else {
                 view = LayoutInflater.from(mContext).inflate(R.layout.item_month_layout, null);
                 solarDay = view.findViewById(R.id.solar_day);
                 lunarDay = view.findViewById(R.id.lunar_day);
+                circleView = view.findViewById(R.id.circleView);
             }
             if (date.getType()==1&&TimeUtils.isToday(date.getSolar()[0] + "-" + date.getSolar()[1] + "-" + date.getSolar()[2] + " 00:00:000")){
                 view.setTag(NOW_DAY);
@@ -113,14 +116,29 @@ public class MonthView extends ViewGroup {
             }
             solarDay.setTextColor(mAttrsBean.getColorSolar());
             solarDay.setTextSize(mAttrsBean.getSizeSolar());
-            lunarDay.setTextColor(mAttrsBean.getColorLunar());
+            lunarDay.setTextColor(mAttrsBean.getColorSolar());
             lunarDay.setTextSize(mAttrsBean.getSizeLunar());
+            circleView.setInsideColor(mAttrsBean.getColorSolar());
+            circleView.setOutsideColor(mAttrsBean.getColorHoliday());
+            circleView.setInterval(9);
 
             //设置上个月和下个月的阳历颜色
             if (date.getType() == 0 || date.getType() == 2) {
                 solarDay.setTextColor(mAttrsBean.getColorLunar());
+                lunarDay.setTextColor(mAttrsBean.getColorLunar());
             }
             solarDay.setText(String.valueOf(date.getSolar()[2]));
+
+            //圆圈测试数据
+            if (date.getSolar()[0]==2018&&date.getSolar()[1]==11&&date.getSolar()[2]==15){
+                circleView.setShow(true);
+                circleView.setVisibility(View.VISIBLE);
+                lunarDay.setVisibility(View.GONE);
+            }else if(date.getSolar()[0]==2018&&date.getSolar()[1]==11&&date.getSolar()[2]==25){
+                circleView.setShow(false);
+                circleView.setVisibility(View.VISIBLE);
+                lunarDay.setVisibility(View.GONE);
+            }
 
             //设置农历（节假日显示）
             if (mAttrsBean.isShowLunar()) {
@@ -275,12 +293,12 @@ public class MonthView extends ViewGroup {
             if ("holiday".equals(lunarDay.getTag())) {
                 lunarDay.setTextColor(mAttrsBean.getColorHoliday());
             } else {
-                lunarDay.setTextColor(mAttrsBean.getColorLunar());
+                lunarDay.setTextColor(mAttrsBean.getColorSolar());
             }
         } else if (type == 1) {
             v.setBackgroundResource(mAttrsBean.getDayBg());
-            solarDay.setTextColor(mAttrsBean.getColorChoose());
-            lunarDay.setTextColor(mAttrsBean.getColorChoose());
+//            solarDay.setTextColor(mAttrsBean.getColorChoose());
+//            lunarDay.setTextColor(mAttrsBean.getColorChoose());
         }
 
     }
@@ -326,7 +344,7 @@ public class MonthView extends ViewGroup {
         //当显示五行时扩大行间距
         int dy = 0;
         if (getChildCount() == 35) {
-            dy = itemHeight / 5;
+            dy = itemHeight / 4;
         }
 
         for (int i = 0; i < getChildCount(); i++) {
@@ -346,7 +364,7 @@ public class MonthView extends ViewGroup {
             int top = i / COLUMN * (itemHeight + dy);
             int right = left + itemWidth;
             int bottom = top + itemHeight;
-            view.layout(left, top, right, bottom);
+            view.layout(left+15, top+15, right-15, bottom-15);
         }
     }
 

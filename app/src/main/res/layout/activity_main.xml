@@ -1,258 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:calendarview="http://schemas.android.com/apk/res-auto"
-    xmlns:weekview="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="50dp"
-            android:background="@mipmap/last"
-            android:onClick="lastMonth" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
-            android:background="@mipmap/next"
-            android:onClick="nextMonth" />
-
-    </RelativeLayout>
+    android:background="#ffffff">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="#55B2F5">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="50dp"
+                android:onClick="lastMonth"
+                android:src="@mipmap/last" />
 
             <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:gravity="center"
-                android:text="周次" />
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <RelativeLayout
-                android:id="@+id/week_rel1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="50dp"
+                android:onClick="nextMonth"
+                android:src="@mipmap/next" />
 
-                <ImageView
-                    android:id="@+id/week_image1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    />
-            </RelativeLayout>
+        </RelativeLayout>
 
-
-            <RelativeLayout
-                android:id="@+id/week_rel2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/week_image2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/week_rel3"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/week_image3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/week_rel4"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/week_image4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/week_rel5"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/week_image5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/week_rel6"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/week_image6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    />
-            </RelativeLayout>
-        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ECECEC" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <com.othershe.calendarview.weiget.WeekView
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#55B2F5"
+                android:orientation="vertical">
 
-            <com.othershe.calendarview.weiget.CalendarView
-                android:id="@+id/calendar"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                calendarview:choose_type="single"
-                calendarview:show_holiday="true"
-                calendarview:show_lunar="true"
-                calendarview:show_term="true"
-                calendarview:switch_choose="false" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:text="周次"
+                    android:textColor="#fff"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="#ececec" />
+
+                <RelativeLayout
+                    android:id="@+id/week_rel1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:id="@+id/week_image1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textColor="#55B2F5"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/week_rel2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:id="@+id/week_image2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textColor="#55B2F5"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/week_rel3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:id="@+id/week_image3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textColor="#55B2F5"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/week_rel4"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:id="@+id/week_image4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textColor="#55B2F5"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/week_rel5"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:id="@+id/week_image5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textColor="#55B2F5"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/week_rel6"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:id="@+id/week_image6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:textColor="#55B2F5"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.othershe.calendarview.weiget.WeekView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="#ececec" />
+
+                <com.othershe.calendarview.weiget.CalendarView
+                    android:id="@+id/calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    calendarview:choose_type="single"
+                    calendarview:show_holiday="true"
+                    calendarview:show_lunar="true"
+                    calendarview:show_term="true"
+                    calendarview:switch_choose="false" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/cut_line_lin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:visibility="gone">
+        android:layout_height="260dp"
+        android:layout_marginTop="108dp"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circle_bg"
-            android:gravity="center"
-            android:onClick="today"
-            android:text="今天"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circle_bg"
-            android:gravity="center"
-            android:onClick="someday"
-            android:text="某天"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#ECECEC" />
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circle_bg"
-            android:gravity="center"
-            android:onClick="start"
-            android:text="首月"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circle_bg"
-            android:gravity="center"
-            android:onClick="end"
-            android:text="末月"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#ECECEC" />
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circle_bg"
-            android:gravity="center"
-            android:onClick="lastYear"
-            android:text="上年"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circle_bg"
-            android:gravity="center"
-            android:onClick="nextYear"
-            android:text="下年"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#ECECEC" />
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/circle_bg"
-            android:gravity="center"
-            android:onClick="multiChoose"
-            android:text="多选"
-            android:textColor="#ffffff"
-            android:textSize="14sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#ECECEC" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cut_line_rel_5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#ECECEC" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cut_line_rel_6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#ECECEC" />
+        </RelativeLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/choose_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:visibility="gone" />
-
-</LinearLayout>
+    <ImageView
+        android:layout_below="@id/cut_line_lin"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f7f7f7"/>
+</RelativeLayout>
